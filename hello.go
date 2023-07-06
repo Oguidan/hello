@@ -50,4 +50,7 @@ func main() {
 	c := []byte{1, 2, 4}
 	result := Compare(a, c)
 	fmt.Println(result)
+
+	// Defers functions
+	b()
 }
