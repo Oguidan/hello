@@ -51,6 +51,19 @@ func Sum(a *[3]float64) (sum float64) {
 	return
 }
 
+// Switch
+func unhex(c byte) byte {
+	switch {
+	case '0' <= c && c <= '9':
+		return c - '0'
+	case 'a' <= c && c <= 'f':
+		return c - 'a' + 10
+	case 'A' <= c && c <= 'F':
+		return c - 'A' + 10
+	}
+	return 0
+}
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
@@ -65,4 +78,7 @@ func main() {
 	array := [...]float64{7.0, 8.5, 9.1}
 	x := Sum(&array)
 	fmt.Println(x)
+
+	// Example for func unhex
+	fmt.Println(unhex('A'))
 }
