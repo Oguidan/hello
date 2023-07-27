@@ -64,6 +64,14 @@ func unhex(c byte) byte {
 	return 0
 }
 
+func shouldEscape(c byte) bool {
+	switch c {
+	case ' ', '?', '&', '=', '#', '+', '%':
+		return true
+	}
+	return false
+}
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
@@ -81,4 +89,7 @@ func main() {
 
 	// Example for func unhex
 	fmt.Println(unhex('A'))
+
+	// Example for func shouldEscape
+	fmt.Println(shouldEscape(' '))
 }
