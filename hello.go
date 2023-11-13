@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // Compare returns an integer comparing the two byte slices,
 // lexicographically.
@@ -92,4 +95,10 @@ func main() {
 
 	// Example for func shouldEscape
 	fmt.Println(shouldEscape(' '))
+
+	// Printing
+	fmt.Printf("Hello %d\n", 23)
+	fmt.Fprint(os.Stdout, "Hello ", 23, "\n")
+	fmt.Println("Hello", 23)
+	fmt.Println(fmt.Sprint("Hello ", 23))
 }
