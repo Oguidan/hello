@@ -97,8 +97,8 @@ func main() {
 	fmt.Println(shouldEscape(' '))
 
 	// Printing
-	fmt.Printf("Hello %d\n", 23)
-	fmt.Fprint(os.Stdout, "Hello ", 23, "\n")
-	fmt.Println("Hello", 23)
-	fmt.Println(fmt.Sprint("Hello ", 23))
+	fmt.Printf("Hello %d\n", 23)              // Works as C's printf function
+	fmt.Fprint(os.Stdout, "Hello ", 23, "\n") // print of Fprint only add blank between operand when neither side is a string
+	fmt.Println("Hello", 23)                  // Println add blank between operand and newline at the end
+	fmt.Println(fmt.Sprint("Hello ", 23))     // The print of Sprint only add blank between operand when neither side is a string and the first Ptintln will add a new line
 }
