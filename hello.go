@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -47,6 +48,16 @@ func b() {
 	a()
 }
 
+// MAaps
+
+var timeZone = map[string]int{
+	"UTC": 0 * 60 * 60,
+	"EST": -5 * 60 * 60,
+	"CST": -6 * 60 * 60,
+	"MST": -7 * 60 * 60,
+	"PST": -8 * 60 * 60,
+}
+
 func Sum(a *[3]float64) (sum float64) {
 	for _, v := range *a {
 		sum += v
@@ -75,6 +86,52 @@ func shouldEscape(c byte) bool {
 	return false
 }
 
+func offset(tz string) int {
+	if seconds, ok := timeZone[tz]; ok {
+		return seconds
+	}
+	log.Println("unknown time zone:", tz)
+	return 0
+}
+
+// Constants
+type ByteSize float64
+
+const (
+	_ = iota // ignore first value by assigning to blank
+	identifier
+	KB ByteSize = 1 << (10 * iota)
+	MB
+	GB
+	TB
+	PB
+	EB
+	ZB
+	YB
+)
+
+func (b ByteSize) String() string {
+	switch {
+	case b >= YB:
+		return fmt.Sprintf("%.2fYB", b/YB)
+	case b >= ZB:
+		return fmt.Sprintf("%.2fZB", b/ZB)
+	case b >= EB:
+		return fmt.Sprintf("%.2fEB", b/EB)
+	case b >= PB:
+		return fmt.Sprintf("%.2fPB", b/PB)
+	case b >= TB:
+		return fmt.Sprintf("%.2fTB", b/TB)
+	case b >= GB:
+		return fmt.Sprintf("%.2FGB", b/GB)
+	case b >= MB:
+		return fmt.Sprintf("%.2fMB", b/MB)
+	case b >= KB:
+		return fmt.Sprintf("%.2fKB", b/KB)
+	}
+	return fmt.Sprintf("%.2fB", b)
+}
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
@@ -101,4 +158,24 @@ func main() {
 	fmt.Fprint(os.Stdout, "Hello ", 23, "\n") // print of Fprint only add blank between operand when neither side is a string
 	fmt.Println("Hello", 23)                  // Println add blank between operand and newline at the end
 	fmt.Println(fmt.Sprint("Hello ", 23))     // The print of Sprint only add blank between operand when neither side is a string and the first Ptintln will add a new line
+
+	var xx uint64 = 1<<64 - 1
+	fmt.Printf("%d %x; %d %x\n", xx, xx, int64(xx), int64(xx))
+
+	fmt.Printf("%v\n", timeZone)
+
+	// Append
+	// xxx := []int{1, 2, 3}
+	// xxx = append(xxx, 4, 5, 6)
+	// fmt.Println(xxx)
+
+	xxx := []int{1, 2, 3}
+	y := []int{4, 5, 6}
+	xxx = append(xxx, y...)
+	fmt.Println(xxx)
+
+	// Variables
+	var (
+		home = os.Getenv("HOME")
+	)
 }
