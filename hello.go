@@ -132,6 +132,13 @@ func (b ByteSize) String() string {
 	return fmt.Sprintf("%.2fB", b)
 }
 
+// Variables
+var (
+	home   = os.Getenv("HOME")
+	user   = os.Getenv("USER")
+	gopath = os.Getenv("GOPATH")
+)
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
@@ -173,9 +180,4 @@ func main() {
 	y := []int{4, 5, 6}
 	xxx = append(xxx, y...)
 	fmt.Println(xxx)
-
-	// Variables
-	var (
-		home = os.Getenv("HOME")
-	)
 }
