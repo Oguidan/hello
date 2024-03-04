@@ -154,6 +154,24 @@ func init() {
 	flag.StringVar(&gopath, "gopath", gopath, "override default GOPATH")
 }
 
+// Methods
+// Pointers vs. Values
+type ByteSlice []byte
+
+func (slice ByteSlice) Append(data []byte) []byte {
+	// Body exactly the same as the Append function defined above.
+	return append(slice, data...)
+}
+
+// Another version
+/*
+func (p *ByteSlice) Append(data []byte) {
+	slice := *p
+	// Body as above, without the return.
+	*p = slice
+}
+*/
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
