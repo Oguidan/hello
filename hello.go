@@ -174,7 +174,12 @@ func (p *ByteSlice) Append(data []byte) {
 */
 
 // If we modify our function so it looks like a Write method, like this,
-func (p *ByteSlice) Write(data []byte) (n int, err error)
+func (p *ByteSlice) Write(data []byte) (n int, err error) {
+	slice := *p
+	// Again as above.
+	*p = slice
+	return len(data), nil
+}
 
 func main() {
 	// Example usage
@@ -217,4 +222,11 @@ func main() {
 	y := []int{4, 5, 6}
 	xxx = append(xxx, y...)
 	fmt.Println(xxx)
+
+	// Pointers vs. Values
+	var b ByteSlice
+	fmt.Fprintf(&b, "This hour has %d days\n", 7)
+
+	// Interfaces and other types
+	// Interfaces
 }
