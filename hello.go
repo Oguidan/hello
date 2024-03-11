@@ -229,4 +229,7 @@ func main() {
 
 	// Interfaces and other types
 	// Interfaces
+	type Sequence []int
+
+	// Methods
 }
