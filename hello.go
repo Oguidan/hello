@@ -163,6 +163,7 @@ func (slice ByteSlice) Append(data []byte) []byte {
 	return append(slice, data...)
 }
 
+// This still requires the method to return the updated slice. We can eliminate that clumsiness by redefining the method to take a pointer to a ByteSlice as its receiver, so the method can overwrite the caller's slice.
 // Another version
 /*
 func (p *ByteSlice) Append(data []byte) {
@@ -171,6 +172,9 @@ func (p *ByteSlice) Append(data []byte) {
 	*p = slice
 }
 */
+
+// If we modify our function so it looks like a Write method, like this,
+func (p *ByteSlice) Write(data []byte) (n int, err error)
 
 func main() {
 	// Example usage
