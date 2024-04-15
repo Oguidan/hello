@@ -218,6 +218,25 @@ func (s Sequence) String() string {
 	return str + "]"
 }
 
+// Conversions
+/*
+func (s Sequence) String() string {
+	s = s.Copy()
+	sort.Sort(s)
+	return fmt.Sprint([]int(s))
+}
+*/
+// Method for printing - sorts the elements before printing.
+/*
+func (s Sequence) String() string {
+	s = s.Copy()
+	sort.IntSlice(s).Sort()
+	return fmt.Sprint([]int(s))
+}
+*/
+
+// Interface conversions and type assertions
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
