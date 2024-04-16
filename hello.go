@@ -236,6 +236,19 @@ func (s Sequence) String() string {
 */
 
 // Interface conversions and type assertions
+func test01() string {
+	type Stringer interface {
+		String() string
+	}
+
+	var value interface{} // Value provided by caller.
+	switch str := value.(type) {
+	case string:
+		return str
+	case Stringer:
+		return str.String()
+	}
+}
 
 func main() {
 	// Example usage
