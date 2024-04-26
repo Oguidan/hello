@@ -248,6 +248,19 @@ func test01() string {
 	case Stringer:
 		return str.String()
 	}
+
+	str, ok := value.(string)
+	if ok {
+		fmt.Printf("string value is: %q\n", str)
+	} else {
+		fmt.Printf("value is not a string\n")
+	}
+
+	if str, ok := value.(string); ok {
+		return str
+	} else if str, ok := value.(Stringer); ok {
+		return str.String()
+	}
 }
 
 func main() {
