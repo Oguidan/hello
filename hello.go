@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"sort"
+
+	"github.com/twitchyliquid64/golang-asm/src"
 )
 
 // Compare returns an integer comparing the two byte slices,
@@ -261,6 +263,19 @@ func test01() string {
 	} else if str, ok := value.(Stringer); ok {
 		return str.String()
 	}
+	return ""
+}
+
+
+// The crypto/cipher interfaces look like this:
+type Block interface {
+	BlockSize() int
+	Encrypt(dst, src []byte)
+	Decrypt(dst, src []byte)
+}
+
+type Stream interface {
+	XORKeyStream(dst, src []byte)
 }
 
 func main() {
