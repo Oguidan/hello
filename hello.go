@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"sort"
 
@@ -266,7 +267,6 @@ func test01() string {
 	return ""
 }
 
-
 // The crypto/cipher interfaces look like this:
 type Block interface {
 	BlockSize() int
@@ -276,6 +276,24 @@ type Block interface {
 
 type Stream interface {
 	XORKeyStream(dst, src []byte)
+}
+
+// Interface and methods
+
+/*
+type Handler interface {
+	ServeHTTP(ResponseWriter, *Request)
+}
+*/
+
+// Simple counter server.
+type Counter struct {
+	n int
+}
+
+func (ctr *Counter) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	ctr.n++
+	fmt.Fprintf(w, "counter = %d\n", ctr.n)
 }
 
 func main() {
