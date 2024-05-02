@@ -286,7 +286,7 @@ type Handler interface {
 }
 */
 
-// Simple counter server.
+/* Simple counter server.
 type Counter struct {
 	n int
 }
@@ -294,6 +294,28 @@ type Counter struct {
 func (ctr *Counter) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	ctr.n++
 	fmt.Fprintf(w, "counter = %d\n", ctr.n)
+}
+
+import "net/http"
+...
+ctr := new(Counter)
+http.Handle("/counter", ctr)
+*/
+
+// Simple counter server.
+type Counter int
+
+func (ctr *Counter) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	*ctr++
+	fmt.Fprintf(w, "counter = %d\n", *ctr)
+}
+
+// A channel that sends a notification on each visit.
+// (Probaly want the channel to be buffered.)
+type Chan chan *http.Request
+
+func (ch Chan) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	ch <- req
 }
 
 func main() {
