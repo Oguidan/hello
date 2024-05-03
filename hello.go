@@ -316,7 +316,58 @@ type Chan chan *http.Request
 
 func (ch Chan) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	ch <- req
+	fmt.Fprint(w, "notification sent")
 }
+
+func ArgServer() {
+	fmt.Println(os.Args)
+}
+
+// The HandlerFunc type is an adapter to allow the use of
+// ordinary functions as HTTP handlers. If f is a function
+// with the appropriate signature, HandlerFunc(f) is a
+// Handler object that calls f.
+
+// type HandlerFunc func(ResponseWriter, *Request)
+
+// ServeHTTP calls f(w, req).
+
+/*
+func (f HandlerFunc) ServeHTTP(w ResponseWriter, req *Request) {
+	f(w, req)
+}
+*/
+
+// Argument server.
+
+/*
+func ArgServer(w http.ResponseWriter, req *http.Request) {
+	fmt.Fpriintln(w, os.Args)
+}
+*/
+
+// AgrServer can be converted to a HandlerFunc.
+
+// http.Handle("/args", http.HandlerFunc(ArgServer))
+
+// The blank identififer
+
+// The blank identifier in multiple assignment
+/*
+if _, err := os.Stat(path); os.IsNotExist(err) {
+	fmt.Printf("%s does not exist\n", path)
+}
+*/
+
+// Bad! This code will crash if path does not exist.
+/*
+fi, _ := os.Stat(path)
+if fi.IsDir() {
+	fmt.Printf("%s is a directory\n", path)
+}
+*/
+
+// Use imports and variables
 
 func main() {
 	// Example usage
