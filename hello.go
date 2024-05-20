@@ -365,9 +365,9 @@ if fi.IsDir() {
 }
 */
 
-
 // Unused imports and variables
 
+/*
 package main
 
 import (
@@ -380,9 +380,42 @@ import (
 func main() {
 	fd, err := os.Open("test.go")
 	if err != nil {
-		log.Fatal()
+		log.Fatal(err)
 	}
+	// TODO: use fd.
 }
+*/
+
+// To silence complaints about the unused imports, use a blank identifier to refer to a symbol from the imported package.
+
+/*
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"os"
+)
+
+var _ = fmt.Printf // For debugging; delete when done.
+var _ io.Reader // For debugging: delete when done.
+
+func main() {
+	fd, err := os.Open("test.go")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// TODO: use fd.
+	_ = fd
+}
+*/
+
+// Import for side effect
+
+// To import the package only for its side effects, rename the package to the blank identifier
+
+// import _ "net/http/pprof"
 
 func main() {
 	// Example usage
