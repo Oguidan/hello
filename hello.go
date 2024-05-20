@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"os"
 	"sort"
-
-	"github.com/twitchyliquid64/golang-asm/src"
 )
 
 // Compare returns an integer comparing the two byte slices,
@@ -367,7 +365,24 @@ if fi.IsDir() {
 }
 */
 
-// Use imports and variables
+
+// Unused imports and variables
+
+package main
+
+import (
+	"fmt"
+	"io"
+	"log"
+	"os"
+)
+
+func main() {
+	fd, err := os.Open("test.go")
+	if err != nil {
+		log.Fatal()
+	}
+}
 
 func main() {
 	// Example usage
