@@ -417,6 +417,11 @@ func main() {
 
 // import _ "net/http/pprof"
 
+// Interface checks
+
+// Some interface checks do happens at run-time, though. One instance is in the encording/json package, which defines a Marshaler interface. When the JSON encoder receives a value that implements that interface, the encoder invokes the value's marshaling method to convert it to JSON instead of doing the standard conversion. The encoder checks this property at run time whith a type assertion like:
+// m, ok := val.(json.Marshaler)
+
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
