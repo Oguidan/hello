@@ -470,5 +470,12 @@ func main() {
 	// m, ok := val.(json.Marshaler)
 
 	// If it's necessary only to ask whether a type implements an interface, without actually using the interface itself, perhhaps as part of an error check, use the blank identifier to ignore the type-asserted value
-	if _, ok := val.(json.Marshaler)
+	/*
+		if _, ok := val.(json.Marshaler); ok {
+			fmt.Printf("value %v of type %T implements json.Marshaler\n", val, val)
+		}
+	*/
+
+	// To guarantee that an implementation is correct, a global declaration using the blank identifier can be used in the package:
+	// var _ json.Marshaler = (*RawMessage)(nil)
 }
