@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -419,9 +420,6 @@ func main() {
 
 // Interface checks
 
-// Some interface checks do happens at run-time, though. One instance is in the encording/json package, which defines a Marshaler interface. When the JSON encoder receives a value that implements that interface, the encoder invokes the value's marshaling method to convert it to JSON instead of doing the standard conversion. The encoder checks this property at run time whith a type assertion like:
-// m, ok := val.(json.Marshaler)
-
 func main() {
 	// Example usage
 	a := []byte{1, 2, 3}
@@ -467,4 +465,10 @@ func main() {
 	// Pointers vs. Values
 	var b ByteSlice
 	fmt.Fprintf(&b, "This hour has %d days\n", 7)
+
+	// Some interface checks do happens at run-time, though. One instance is in the encording/json package, which defines a Marshaler interface. When the JSON encoder receives a value that implements that interface, the encoder invokes the value's marshaling method to convert it to JSON instead of doing the standard conversion. The encoder checks this property at run time whith a type assertion like:
+	// m, ok := val.(json.Marshaler)
+
+	// If it's necessary only to ask whether a type implements an interface, without actually using the interface itself, perhhaps as part of an error check, use the blank identifier to ignore the type-asserted value
+	if _, ok := val.(json.Marshaler)
 }
