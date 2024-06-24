@@ -478,4 +478,40 @@ func main() {
 
 	// To guarantee that an implementation is correct, a global declaration using the blank identifier can be used in the package:
 	// var _ json.Marshaler = (*RawMessage)(nil)
+
+	// Embedding
+
+	// io.Reader and io.Writer interfaces definitions
+	type Reader interface {
+		Read(p []byte) (n int, err error)
+	}
+
+	type Writer interface {
+		Write(p []byte) (n int, err error)
+	}
+
+	// We could specify io.ReadWriter by listening the two methods explicity, but it's  easier and more evocative to embed the two interface to form the new one.
+	// ReadWriter is the interface that combines the Reader and  Writer interfaces.
+	type ReadWriter interface {
+		Reader
+		Writer
+	}
+
+	// The same basic idea applies to structs, but with more far-reaching implications.
+	// ReasWriter stores pointers to a Reader and a Writer.
+	// It implement io.ReadWriter.
+	/*
+		type ReadWriter struct {
+			*Reader // *bufio.Reader
+			*Writer // *bufio.Writer
+		}
+	*/
+
+	// The ReadWriter could be written as
+	/*
+		type ReadWriter struct {
+			reader *Reader
+			writer *Writer
+		}
+	*/
 }
